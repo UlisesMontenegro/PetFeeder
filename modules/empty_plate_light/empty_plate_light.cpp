@@ -1,13 +1,16 @@
 //=====[Libraries]=============================================================
 
-#include "pet_feeder.h"
+#include "mbed.h"
 #include "arm_book_lib.h"
+#include "empty_plate_light.h"
 
 //=====[Declaration of private defines]========================================
 
 //=====[Declaration of private data types]=====================================
 
 //=====[Declaration and initialization of public global objects]===============
+
+//DigitalOut emptyPlateLight(PINXX);
 
 //=====[Declaration of external public global variables]=======================
 
@@ -19,15 +22,14 @@
 
 //=====[Implementations of public functions]===================================
 
-void petFeederInit()
+void emptyPlateLightInit()
 {
-    //Initialize each module.
+    
 }
 
-void petFeederUpdate()
+void emptyPlateLightUpdate()
 {
-    //Update each module.
-    delay(SYSTEM_TIME_INCREMENT_MS);
+
 }
 
 //=====[Implementations of private functions]==================================
