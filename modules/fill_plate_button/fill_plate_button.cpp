@@ -8,7 +8,7 @@
 
 //=====[Declaration of private defines]========================================
 
-#define DEBOUNCE_TIME_MS 40
+#define DEBOUNCE_TIME_MS 20
 
 //=====[Declaration of private data types]=====================================
 
