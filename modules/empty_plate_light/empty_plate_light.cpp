@@ -10,7 +10,7 @@
 
 //=====[Declaration and initialization of public global objects]===============
 
-//DigitalOut emptyPlateLight(PINXX);
+DigitalOut emptyPlateLight(D0);
 
 //=====[Declaration of external public global variables]=======================
 
@@ -24,12 +24,17 @@
 
 void emptyPlateLightInit()
 {
-    
+    emptyPlateLight = OFF;
 }
 
 void emptyPlateLightUpdate()
 {
+    //emptyPlateLight = !emptyPlateLight;
+}
 
+void emptyPlateLightTurn(int state)
+{
+    emptyPlateLight = state;
 }
 
 //=====[Implementations of private functions]==================================

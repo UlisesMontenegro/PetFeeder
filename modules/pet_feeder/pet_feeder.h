@@ -5,7 +5,7 @@
 
 //=====[Declaration of public defines]=========================================
 
-#define SYSTEM_TIME_INCREMENT_MS   10
+#define UPDATE_TIME_INCREMENT_MS   
 
 //=====[Declaration of public data types]======================================
 

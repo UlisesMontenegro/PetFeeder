@@ -11,6 +11,7 @@
 
 void emptyPlateLightInit();
 void emptyPlateLightUpdate();
+void emptyPlateLightTurn(int state);
 
 //=====[#include guards - end]=================================================
 

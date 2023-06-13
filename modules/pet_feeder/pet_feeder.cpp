@@ -36,7 +36,7 @@ void petFeederUpdate()
     emptyPlateLightUpdate();
     weightSensorUpdate();
     fillPlateButtonUpdate();
-    delay(SYSTEM_TIME_INCREMENT_MS);
+    delay(UPDATE_TIME_INCREMENT_MS);
 }
 
 //=====[Implementations of private functions]==================================
