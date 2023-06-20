@@ -30,15 +30,15 @@ void bleComUpdate()
     if( receivedChar != '\0' ) {
         switch (receivedChar) {
             case 'P': 
-                updatePlateWeight = true;
-                operatingMode = CONFIGURATION_MODE;
+                updatePlateWeight = true; //updatePlateWeight();
+                operatingMode = CONFIGURATION_MODE; //configurationMode();
             break;
             case 'F':
-                updateFoodPortion = true;
-                operatingMode = CONFIGURATION_MODE;
+                updateFoodPortion = true; //updateFoodPortion();
+                operatingMode = CONFIGURATION_MODE; //configurationMode();
             break;
             case 'B':
-                buttonPressed = true;
+                buttonPressed = true; //buttonPressed();
             break;
         }
     }
