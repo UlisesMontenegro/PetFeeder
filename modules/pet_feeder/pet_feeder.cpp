@@ -5,6 +5,7 @@
 #include "empty_plate_light.h"
 #include "weight_sensor.h"
 #include "fill_plate_button.h"
+#include "ble_com.h"
 
 //=====[Declaration of private defines]========================================
 
@@ -40,8 +41,8 @@ int foodPortionWeight;
 
 //=====[Declarations (prototypes) of private functions]========================
 
-void runNormalMode();
-void runConfigurationMode();
+static void runNormalMode();
+static void runConfigurationMode();
 
 //=====[Implementations of public functions]===================================
 
@@ -66,7 +67,7 @@ void petFeederUpdate()
     emptyPlateLightUpdate();
     weightSensorUpdate();
     fillPlateButtonUpdate();
-    //bleComUpdate(); ---> UPDATE BLE MODULE.
+    bleComUpdate();
 
     switch(operatingMode){
         case NORMAL_MODE:
@@ -81,36 +82,36 @@ void petFeederUpdate()
 
 //=====[Implementations of private functions]==================================
 
-void runNormalMode(){
+static void runNormalMode(){
     switch(plateState){
         case PLATE_FULL:
             if(sensedWeight() == DEFAULT_EMPTY_PLATE_WEIGHT){
                 emptyPlateLightTurn(ON);
-                // bleComWrite("PEM\r\n"); ---> Notifies smartphone that the plate is empty.
+                bleComStringWrite("PEM\r\n");
                 plateState = PLATE_EMPTY;
             }else if(buttonPressed == true){
                 // fillPlate(); ---> Servomotor's method.
-                // bleComWrite("PFI\r\n"); ---> Notifies smartphone that the plate is being filled.
+                bleComStringWrite("PFI\r\n");
                 plateState = PLATE_FILLING;
             }
         break;
         case PLATE_FILLING:
             if(sensedWeight() == DEFAULT_FULL_PLATE_WEIGHT){
-                // bleComWrite("PFU\r\n"); ---> Notifies smartphone that the plate is full.
+                bleComStringWrite("PFU\r\n");
                 plateState = PLATE_FULL;
             }
         break;
         case PLATE_EMPTY:
             if(buttonPressed == true){
                 // fillPlate(); ---> Servomotor's method.
-                // bleComWrite("PFI\r\n"); ---> Notifies smartphone that the plate is being filled.
+                bleComStringWrite("PFI\r\n");
                 plateState = PLATE_FILLING;
             }
         break;
     }
 }
 
-void runConfigurationMode(){
+static void runConfigurationMode(){
     if(updatePlateWeight == true){
         emptyPlateWeight = sensedWeight();
         updatePlateWeight = false;
