@@ -44,4 +44,8 @@ void weightSensorUpdate()
     }
 }
 
+float sensedWeight(){
+    return currentWeight;
+}
+
 //=====[Implementations of private functions]==================================

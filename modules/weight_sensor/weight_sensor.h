@@ -11,6 +11,7 @@
 
 void weightSensorInit();
 void weightSensorUpdate();
+float sensedWeight();
 
 //=====[#include guards - end]=================================================
 
