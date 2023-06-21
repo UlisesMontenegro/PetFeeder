@@ -28,16 +28,15 @@ typedef enum{
 
 //=====[Declaration and initialization of public global variables]=============
 
-operatingMode_t operatingMode;
-bool buttonPressed;
-bool updatePlateWeight;
-bool updateFoodPortion;
-
 //=====[Declaration and initialization of private global variables]============
 
 plateState_t plateState;
+operatingMode_t operatingMode;
 int emptyPlateWeight;
 int foodPortionWeight;
+bool buttonPressed;
+bool updatePlateWeight;
+bool updateFoodPortion;
 
 //=====[Declarations (prototypes) of private functions]========================
 
@@ -78,6 +77,22 @@ void petFeederUpdate()
         break;
     }
     delay(UPDATE_TIME_INCREMENT_MS);
+}
+
+void updatePlateWeight(){
+    updatePlateWeight = true;
+}
+
+void updateFoodPortion(){
+    updateFoodPortion = true;
+} 
+
+void buttonPressed(){
+    buttonPressed = true;
+}
+
+void configurationMode(){
+    operatingMode = CONFIGURATION_MODE;
 }
 
 //=====[Implementations of private functions]==================================
