@@ -30,6 +30,7 @@ void weightSensorInit()
 {
     dutyCycle = 0.5;
     servomotor.write(dutyCycle);
+    servomotor.period_ms(20);
 }
 
 void weightSensorUpdate()
