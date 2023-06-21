@@ -1,25 +1,19 @@
 //=====[#include guards - begin]===============================================
 
-#ifndef _PET_FEEDER_H_
-#define _PET_FEEDER_H_
+#ifndef _FILL_PLATE_ENABLER_H_
+#define _FILL_PLATE_ENABLER_H_
 
 //=====[Declaration of public defines]=========================================
-
-#define UPDATE_TIME_INCREMENT_MS  10
-#define DEFAULT_EMPTY_PLATE_WEIGHT  0.2 // In [grams].
-#define DEFAULT_FULL_PLATE_WEIGHT  0.8 // In [grams] (Food + plate).
 
 //=====[Declaration of public data types]======================================
 
 //=====[Declarations (prototypes) of public functions]=========================
 
-void petFeederInit();
-void petFeederUpdate();
-void updatePlateWeight();
-void updateFoodPortion();
-void buttonPressed();
-void configurationMode();
+void fillPlateEnablerInit();
+void fillPlateEnablerUpdate();
+void enablePlateFilling();
+void disablePlateFilling();
 
 //=====[#include guards - end]=================================================
 
-#endif // _PET_FEEDER_H_
+#endif // _FILL_PLATE_ENABLER_H_

@@ -2,18 +2,17 @@
 
 #include "mbed.h"
 #include "arm_book_lib.h"
-#include "weight_sensor.h"
-#include "empty_plate_light.h"
+#include "fill_plate_enabler.h"
 
 //=====[Declaration of private defines]========================================
 
-#define EMPTY_PLATE_WEIGHT 0.2
+// #define EMPTY_PLATE_WEIGHT 0.2
 
 //=====[Declaration of private data types]=====================================
 
 //=====[Declaration and initialization of public global objects]===============
 
-AnalogIn potentiometer(A1);
+PwmOut servomotor(D6);
 
 //=====[Declaration of external public global variables]=======================
 
@@ -21,7 +20,7 @@ AnalogIn potentiometer(A1);
 
 //=====[Declaration and initialization of private global variables]============
 
-float currentWeight;
+float dutyCycle;
 
 //=====[Declarations (prototypes) of private functions]========================
 
@@ -29,17 +28,23 @@ float currentWeight;
 
 void weightSensorInit()
 {
-    currentWeight = 0.0;
+    dutyCycle = 0.5;
+    servomotor.write(dutyCycle);
 }
 
 void weightSensorUpdate()
 {
-    currentWeight = potentiometer.read();
-    // printf("Potentiometer Value: %.f", currentWeight);
+
 }
 
-float sensedWeight(){
-    return currentWeight;
+void enablePlateFilling(){
+    dutyCycle = 0.9;
+    servomotor.write(dutyCycle);
+}
+
+void disablePlateFilling(){
+    dutyCycle = 0.2;
+    servomotor.write(dutyCycle);
 }
 
 //=====[Implementations of private functions]==================================
