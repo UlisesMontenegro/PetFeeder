@@ -26,14 +26,14 @@ float dutyCycle;
 
 //=====[Implementations of public functions]===================================
 
-void weightSensorInit()
+void fillPlateEnablerInit()
 {
     dutyCycle = 0.5;
     servomotor.write(dutyCycle);
     servomotor.period_ms(20);
 }
 
-void weightSensorUpdate()
+void fillPlateEnablerUpdate()
 {
 
 }

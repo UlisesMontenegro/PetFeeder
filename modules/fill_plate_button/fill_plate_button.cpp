@@ -8,15 +8,15 @@
 
 //=====[Declaration of private defines]========================================
 
-#define DEBOUNCE_TIME_MS 20
+//#define DEBOUNCE_TIME_MS 20
 
 //=====[Declaration of private data types]=====================================
 
-typedef enum {
+/*typedef enum {
     BUTTON_PRESSED,
     BUTTON_UNPRESSED,
     BUTTON_DEBOUNCING
-} buttonState_t;
+} buttonState_t;*/
 
 //=====[Declaration and initialization of public global objects]===============
 
@@ -28,8 +28,9 @@ DigitalIn fillPlateButton(D1);
 
 //=====[Declaration and initialization of private global variables]============
 
-buttonState_t fillPlateButtonState;
-int debounceAccumulatedTime;
+//buttonState_t fillPlateButtonState;
+//int debounceAccumulatedTime;
+bool fillPlateButtonPressed;
 
 //=====[Declarations (prototypes) of private functions]========================
 
@@ -38,16 +39,22 @@ int debounceAccumulatedTime;
 void fillPlateButtonInit()
 {
     fillPlateButton.mode(PullUp);
-    fillPlateButtonState = BUTTON_UNPRESSED;
-    debounceAccumulatedTime = 0;
+    //fillPlateButtonState = BUTTON_UNPRESSED;
+    //debounceAccumulatedTime = 0;
+    fillPlateButtonPressed = false;
 }
 
 void fillPlateButtonUpdate()
 {
-    switch(fillPlateButtonState){
+    if(fillPlateButton.read() == LOW){
+        fillPlateButtonPressed = true;
+    }else{
+        fillPlateButtonPressed = false;
+    }
+    /*switch(fillPlateButtonState){
 
         case BUTTON_UNPRESSED:
-            emptyPlateLightTurn(ON);
+            //emptyPlateLightTurn(ON);
             debounceAccumulatedTime = 0;
             if(fillPlateButton.read() == LOW){
                 fillPlateButtonState = BUTTON_DEBOUNCING;
@@ -70,7 +77,7 @@ void fillPlateButtonUpdate()
 
         case BUTTON_PRESSED:
             debounceAccumulatedTime = 0;
-            emptyPlateLightTurn(OFF);
+            //emptyPlateLightTurn(OFF);
             if(fillPlateButton.read() == HIGH){
                 fillPlateButtonState = BUTTON_DEBOUNCING;
             }
@@ -79,21 +86,15 @@ void fillPlateButtonUpdate()
         default:
             fillPlateButtonState = BUTTON_UNPRESSED;
             break;
-    }
-    
-    /*
-    if(fillPlateButton.read() == 0){
-        fillPlateButtonState = BUTTON_PRESSED;
-    }
-    else{
-        fillPlateButtonState = BUTTON_UNPRESSED;
-    }
-    if(fillPlateButtonState == BUTTON_PRESSED){
-        emptyPlateLightTurn(OFF);
-    }
-    else{
-        emptyPlateLightTurn(ON);
     }*/
+}
+
+bool isButtonPressed(){
+    return fillPlateButtonPressed;
+}
+
+void buttonPressed(){
+    fillPlateButtonPressed = true;
 }
 
 //=====[Implementations of private functions]==================================

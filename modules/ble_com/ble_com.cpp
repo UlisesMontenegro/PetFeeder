@@ -3,6 +3,7 @@
 #include "mbed.h"
 #include "ble_com.h"
 #include "pet_feeder.h"
+#include "fill_plate_button.h"
 
 //=====[Declaration of private defines]========================================
 

@@ -17,7 +17,6 @@ void petFeederInit();
 void petFeederUpdate();
 void updatePlateWeight();
 void updateFoodPortion();
-void buttonPressed();
 void configurationMode();
 
 //=====[#include guards - end]=================================================

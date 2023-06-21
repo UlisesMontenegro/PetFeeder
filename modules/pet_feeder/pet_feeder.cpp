@@ -35,7 +35,6 @@ plateState_t plateState;
 operatingMode_t operatingMode;
 float emptyPlateWeight;
 float foodPortionWeight;
-bool buttonPressedSignal;
 bool updatePlateWeightSignal;
 bool updateFoodPortionSignal;
 
@@ -51,7 +50,6 @@ void petFeederInit()
     //Initialize each module.
     operatingMode = NORMAL_MODE;
     plateState = PLATE_FULL;
-    buttonPressedSignal = false;
     updatePlateWeightSignal = false;
     updateFoodPortionSignal = false;
     emptyPlateWeight = DEFAULT_EMPTY_PLATE_WEIGHT;
@@ -67,7 +65,8 @@ void petFeederUpdate()
     //Update each module.
     //emptyPlateLightUpdate();
     weightSensorUpdate();
-    bleComUpdate();
+    fillPlateButtonUpdate();
+    //bleComUpdate();
 
     switch(operatingMode){
         case NORMAL_MODE:
@@ -88,10 +87,6 @@ void updateFoodPortion(){
     updateFoodPortionSignal = true;
 } 
 
-void buttonPressed(){
-    buttonPressedSignal = true;
-}
-
 void configurationMode(){
     operatingMode = CONFIGURATION_MODE;
 }
@@ -103,11 +98,12 @@ static void runNormalMode(){
         case PLATE_FULL:
             if(sensedWeight() == emptyPlateWeight){
                 emptyPlateLightTurn(ON);
-                bleComStringWrite("PEM\r\n");
+                //bleComStringWrite("PEM\r\n");
                 plateState = PLATE_EMPTY;
-            }else if(buttonPressedSignal == true){
+            }else if(isButtonPressed() == true){
                 enablePlateFilling();
-                bleComStringWrite("PFI\r\n");
+                emptyPlateLightTurn(ON);
+                //bleComStringWrite("PFI\r\n");
                 plateState = PLATE_FILLING;
             }
         break;
@@ -115,14 +111,14 @@ static void runNormalMode(){
             if(sensedWeight() == foodPortionWeight){
                 emptyPlateLightTurn(OFF);
                 disablePlateFilling();
-                bleComStringWrite("PFU\r\n");
+                //bleComStringWrite("PFU\r\n");
                 plateState = PLATE_FULL;
             }
         break;
         case PLATE_EMPTY:
-            if(buttonPressedSignal == true){
+            if(isButtonPressed() == true){
                 enablePlateFilling();
-                bleComStringWrite("PFI\r\n");
+                //bleComStringWrite("PFI\r\n");
                 plateState = PLATE_FILLING;
             }
         break;

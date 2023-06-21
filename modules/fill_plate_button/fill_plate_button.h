@@ -11,6 +11,8 @@
 
 void fillPlateButtonInit();
 void fillPlateButtonUpdate();
+bool isButtonPressed();
+void buttonPressed();
 
 //=====[#include guards - end]=================================================
 
