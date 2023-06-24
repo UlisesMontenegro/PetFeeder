@@ -7,8 +7,6 @@
 
 //=====[Declaration of private defines]========================================
 
-#define EMPTY_PLATE_WEIGHT 0.2
-
 //=====[Declaration of private data types]=====================================
 
 //=====[Declaration and initialization of public global objects]===============

@@ -6,8 +6,8 @@
 //=====[Declaration of public defines]=========================================
 
 #define UPDATE_TIME_INCREMENT_MS  10
-#define DEFAULT_EMPTY_PLATE_WEIGHT  0.2 // In [grams].
-#define DEFAULT_FULL_PLATE_WEIGHT  0.8 // In [grams] (Food + plate).
+#define DEFAULT_EMPTY_PLATE_WEIGHT  0.4 // In [grams].
+#define DEFAULT_FULL_PLATE_WEIGHT  0.7 // In [grams] (Food + plate).
 
 //=====[Declaration of public data types]======================================
 

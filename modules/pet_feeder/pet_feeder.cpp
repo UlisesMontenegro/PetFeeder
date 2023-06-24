@@ -96,19 +96,19 @@ void configurationMode(){
 static void runNormalMode(){
     switch(plateState){
         case PLATE_FULL:
-            if(sensedWeight() == emptyPlateWeight){
+            if(sensedWeight() <= emptyPlateWeight){
                 emptyPlateLightTurn(ON);
                 //bleComStringWrite("PEM\r\n");
                 plateState = PLATE_EMPTY;
             }else if(isButtonPressed() == true){
                 enablePlateFilling();
-                emptyPlateLightTurn(ON);
+                emptyPlateLightTurn(OFF);
                 //bleComStringWrite("PFI\r\n");
                 plateState = PLATE_FILLING;
             }
         break;
         case PLATE_FILLING:
-            if(sensedWeight() == foodPortionWeight){
+            if(sensedWeight() >= foodPortionWeight){
                 emptyPlateLightTurn(OFF);
                 disablePlateFilling();
                 //bleComStringWrite("PFU\r\n");

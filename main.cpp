@@ -16,11 +16,10 @@
 #include "mbed.h"
 #include "pet_feeder.h"
 
-
 //=====[Main function, the program entry point after power on or reset]========
 
 int main()
-{
+{   
     petFeederInit();
     while (true) {
         petFeederUpdate();
