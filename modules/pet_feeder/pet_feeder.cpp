@@ -66,7 +66,7 @@ void petFeederUpdate()
     //emptyPlateLightUpdate();
     weightSensorUpdate();
     fillPlateButtonUpdate();
-    //bleComUpdate();
+    bleComUpdate();
 
     switch(operatingMode){
         case NORMAL_MODE:
@@ -98,12 +98,12 @@ static void runNormalMode(){
         case PLATE_FULL:
             if(sensedWeight() <= emptyPlateWeight){
                 emptyPlateLightTurn(ON);
-                //bleComStringWrite("PEM\r\n");
+                bleComStringWrite("PEM\r\n");
                 plateState = PLATE_EMPTY;
             }else if(isButtonPressed() == true){
                 enablePlateFilling();
                 emptyPlateLightTurn(OFF);
-                //bleComStringWrite("PFI\r\n");
+                bleComStringWrite("PFI\r\n");
                 plateState = PLATE_FILLING;
             }
         break;
@@ -111,14 +111,14 @@ static void runNormalMode(){
             if(sensedWeight() >= foodPortionWeight){
                 emptyPlateLightTurn(OFF);
                 disablePlateFilling();
-                //bleComStringWrite("PFU\r\n");
+                bleComStringWrite("PFU\r\n");
                 plateState = PLATE_FULL;
             }
         break;
         case PLATE_EMPTY:
             if(isButtonPressed() == true){
                 enablePlateFilling();
-                //bleComStringWrite("PFI\r\n");
+                bleComStringWrite("PFI\r\n");
                 plateState = PLATE_FILLING;
             }
         break;
