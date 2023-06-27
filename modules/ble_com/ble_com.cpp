@@ -45,7 +45,7 @@ void bleComUpdate()
     }
 }
 
-void bleComStringWrite( const char* str )
+void bleComStringWrite( const char* str)
 {
     uartBle.write( str, strlen(str) );
 }
