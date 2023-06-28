@@ -30,16 +30,18 @@ void bleComUpdate()
     char receivedChar = bleComCharRead();
     if( receivedChar != '\0' ) {
         switch (receivedChar) {
+            case 'C': 
+                configurationMode();
+            break;
             case 'P': 
                 updatePlateWeight();
-                configurationMode();
             break;
             case 'F':
                 updateFoodPortion();
                 //configurationMode();
             break;
             case 'B':
-                buttonPressed();
+                pressButton();
             break;
         }
     }

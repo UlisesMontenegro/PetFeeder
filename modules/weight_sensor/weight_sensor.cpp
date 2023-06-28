@@ -3,7 +3,7 @@
 #include "mbed.h"
 #include "arm_book_lib.h"
 #include "weight_sensor.h"
-#include "empty_plate_light.h"
+#include "HX711.h"
 
 //=====[Declaration of private defines]========================================
 
@@ -11,7 +11,7 @@
 
 //=====[Declaration and initialization of public global objects]===============
 
-AnalogIn potentiometer(A1);
+HX711 balance(D0, D5);
 
 //=====[Declaration of external public global variables]=======================
 
@@ -19,7 +19,8 @@ AnalogIn potentiometer(A1);
 
 //=====[Declaration and initialization of private global variables]============
 
-float currentWeight;
+long currentWeight;
+long tareValue;
 
 //=====[Declarations (prototypes) of private functions]========================
 
@@ -27,16 +28,18 @@ float currentWeight;
 
 void weightSensorInit()
 {
-    currentWeight = 0.0;
+    currentWeight = 0;
+    tareValue = balance.averageValue(5);
 }
 
 void weightSensorUpdate()
 {
-    currentWeight = potentiometer.read();
+    long value = balance.averageValue(5);
+    currentWeight = (value - tareValue);
     // printf("Potentiometer Value: %.f", currentWeight);
 }
 
-float sensedWeight(){
+long sensedWeight(){
     return currentWeight;
 }
 

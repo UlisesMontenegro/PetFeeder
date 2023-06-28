@@ -23,24 +23,26 @@
 
 int main()
 {   
+    
     //float currentWeight;
-    char buffer[3];
+    char buffer[100];
     HX711 balanza(D0, D5);
     bleComStringWrite("Empezando");
-    long valor;
-    long valorTara;
-    float peso;
+    long valor=0;
+    long valorTara=0;
+    float peso=0.0;
     
-    valorTara = balanza.getValue();                                           // On récupère la valeur de la Tare
+    //valorTara = balanza.getValue();
+    valorTara = balanza.averageValue(10);
     //petFeederInit();
     while (true) {
-        delay(200);                                                       // Attente de 200 millisecondes
-        valor = balanza.getValue();                                        // On récupère la valeur du module
-        peso = ((float)valor-(float)valorTara)/143200;         // Convertionde la valeur de l'ADC en grammes
+        delay(200);
+        //valor = balanza.getValue();
+        valor = balanza.averageValue(10);
+        //peso = ((float)valor-(float)valorTara)/143200;
+        peso = (valor-valorTara);
         //petFeederUpdate();
-        buffer[0] = (char)peso;
-        buffer[1] = '\r';
-        buffer[1] = '\n';
+        sprintf(buffer, "Peso: %d", (int)peso);
         bleComStringWrite(buffer);
     }
 }

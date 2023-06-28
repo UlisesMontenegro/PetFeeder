@@ -33,10 +33,12 @@ typedef enum{
 
 plateState_t plateState;
 operatingMode_t operatingMode;
-float emptyPlateWeight;
-float foodPortionWeight;
+long emptyPlateWeight;
+long fullPlateWeight;
+long foodPortionWeight;
 bool updatePlateWeightSignal;
 bool updateFoodPortionSignal;
+char buffer[100];
 
 //=====[Declarations (prototypes) of private functions]========================
 
@@ -48,12 +50,14 @@ static void runConfigurationMode();
 void petFeederInit()
 {
     //Initialize each module.
+    bleComStringWrite("Welcome to PetFeeder!");
     operatingMode = NORMAL_MODE;
     plateState = PLATE_FULL;
     updatePlateWeightSignal = false;
     updateFoodPortionSignal = false;
     emptyPlateWeight = DEFAULT_EMPTY_PLATE_WEIGHT;
-    foodPortionWeight = DEFAULT_FULL_PLATE_WEIGHT;
+    fullPlateWeight = DEFAULT_FULL_PLATE_WEIGHT;
+    foodPortionWeight = fullPlateWeight - emptyPlateWeight;
     emptyPlateLightInit();
     weightSensorInit();
     fillPlateButtonInit();
@@ -97,28 +101,34 @@ static void runNormalMode(){
     switch(plateState){
         case PLATE_FULL:
             if(sensedWeight() <= emptyPlateWeight){
+                sprintf(buffer, "Empty Plate Weight: %d", (int)emptyPlateWeight);
+                bleComStringWrite(buffer);
+                sprintf(buffer, "Sensed Weight: %d", (int)sensedWeight());
+                bleComStringWrite(buffer);
                 emptyPlateLightTurn(ON);
-                bleComStringWrite("PEM\r\n");
+                bleComStringWrite("Plate Empty");
                 plateState = PLATE_EMPTY;
             }else if(isButtonPressed() == true){
                 enablePlateFilling();
                 emptyPlateLightTurn(OFF);
-                bleComStringWrite("PFI\r\n");
+                bleComStringWrite("Plate Filling");
                 plateState = PLATE_FILLING;
             }
         break;
         case PLATE_FILLING:
-            if(sensedWeight() >= foodPortionWeight){
+            sprintf(buffer, "Sensed Weight: %d", (int)sensedWeight());
+            bleComStringWrite(buffer);
+            if(sensedWeight() >= fullPlateWeight){
                 emptyPlateLightTurn(OFF);
                 disablePlateFilling();
-                bleComStringWrite("PFU\r\n");
+                bleComStringWrite("Plate Full");
                 plateState = PLATE_FULL;
             }
         break;
         case PLATE_EMPTY:
             if(isButtonPressed() == true){
                 enablePlateFilling();
-                bleComStringWrite("PFI\r\n");
+                bleComStringWrite("Plate Filling");
                 plateState = PLATE_FILLING;
             }
         break;
@@ -126,12 +136,20 @@ static void runNormalMode(){
 }
 
 static void runConfigurationMode(){
+    bleComStringWrite("Running Configuration Mode");
     if(updatePlateWeightSignal == true){
         emptyPlateWeight = sensedWeight();
+        fullPlateWeight = emptyPlateWeight + foodPortionWeight;
         updatePlateWeightSignal = false;
+        plateState = PLATE_EMPTY;
+        operatingMode = NORMAL_MODE;
+        bleComStringWrite("Plate Weight Updated");
     }else if(updateFoodPortionSignal == true){
-        foodPortionWeight = sensedWeight();
+        fullPlateWeight = sensedWeight();
+        foodPortionWeight = fullPlateWeight-emptyPlateWeight;
         updateFoodPortionSignal = false;
+        plateState = PLATE_FULL;
+        operatingMode = NORMAL_MODE;
+        bleComStringWrite("Full Portion Updated");
     }
-    operatingMode = NORMAL_MODE;
 }

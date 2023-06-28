@@ -10,7 +10,7 @@
 
 //=====[Declaration and initialization of public global objects]===============
 
-DigitalOut emptyPlateLight(D0);
+DigitalOut emptyPlateLight(D7);
 
 //=====[Declaration of external public global variables]=======================
 
