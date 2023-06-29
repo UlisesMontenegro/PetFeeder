@@ -24,7 +24,7 @@
 int main()
 {   
     
-    //float currentWeight;
+    /*//float currentWeight;
     char buffer[100];
     HX711 balanza(D0, D5);
     bleComStringWrite("Empezando");
@@ -33,17 +33,17 @@ int main()
     float peso=0.0;
     
     //valorTara = balanza.getValue();
-    valorTara = balanza.averageValue(10);
-    //petFeederInit();
+    valorTara = balanza.averageValue(10);*/
+    petFeederInit();
     while (true) {
-        delay(200);
+        //delay(200);
         //valor = balanza.getValue();
-        valor = balanza.averageValue(10);
+        //valor = balanza.averageValue(10);
         //peso = ((float)valor-(float)valorTara)/143200;
-        peso = (valor-valorTara);
-        //petFeederUpdate();
-        sprintf(buffer, "Peso: %d", (int)peso);
-        bleComStringWrite(buffer);
+        //peso = (valor-valorTara);
+        petFeederUpdate();
+        //sprintf(buffer, "Peso: %d", (int)peso);
+        //bleComStringWrite(buffer);
     }
 }
 

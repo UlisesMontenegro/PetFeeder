@@ -92,6 +92,7 @@ void updateFoodPortion(){
 } 
 
 void configurationMode(){
+    bleComStringWrite("Configuration Mode");
     operatingMode = CONFIGURATION_MODE;
 }
 
@@ -101,10 +102,10 @@ static void runNormalMode(){
     switch(plateState){
         case PLATE_FULL:
             if(sensedWeight() <= emptyPlateWeight){
-                sprintf(buffer, "Empty Plate Weight: %d", (int)emptyPlateWeight);
-                bleComStringWrite(buffer);
-                sprintf(buffer, "Sensed Weight: %d", (int)sensedWeight());
-                bleComStringWrite(buffer);
+                //sprintf(buffer, "Empty Plate Weight: %d", (int)emptyPlateWeight);
+                //bleComStringWrite(buffer);
+                //sprintf(buffer, "Sensed Weight: %d", (int)sensedWeight());
+                //bleComStringWrite(buffer);
                 emptyPlateLightTurn(ON);
                 bleComStringWrite("Plate Empty");
                 plateState = PLATE_EMPTY;
@@ -116,8 +117,8 @@ static void runNormalMode(){
             }
         break;
         case PLATE_FILLING:
-            sprintf(buffer, "Sensed Weight: %d", (int)sensedWeight());
-            bleComStringWrite(buffer);
+            //sprintf(buffer, "Sensed Weight: %d", (int)sensedWeight());
+            //bleComStringWrite(buffer);
             if(sensedWeight() >= fullPlateWeight){
                 emptyPlateLightTurn(OFF);
                 disablePlateFilling();
@@ -136,7 +137,6 @@ static void runNormalMode(){
 }
 
 static void runConfigurationMode(){
-    bleComStringWrite("Running Configuration Mode");
     if(updatePlateWeightSignal == true){
         emptyPlateWeight = sensedWeight();
         fullPlateWeight = emptyPlateWeight + foodPortionWeight;
@@ -145,9 +145,10 @@ static void runConfigurationMode(){
         operatingMode = NORMAL_MODE;
         bleComStringWrite("Plate Weight Updated");
     }else if(updateFoodPortionSignal == true){
-        fullPlateWeight = sensedWeight();
+        fullPlateWeight = sensedWeight() - 50000;
         foodPortionWeight = fullPlateWeight-emptyPlateWeight;
         updateFoodPortionSignal = false;
+        emptyPlateLightTurn(OFF);
         plateState = PLATE_FULL;
         operatingMode = NORMAL_MODE;
         bleComStringWrite("Full Portion Updated");

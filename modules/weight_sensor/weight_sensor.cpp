@@ -29,12 +29,12 @@ long tareValue;
 void weightSensorInit()
 {
     currentWeight = 0;
-    tareValue = balance.averageValue(5);
+    tareValue = balance.getValue();
 }
 
 void weightSensorUpdate()
 {
-    long value = balance.averageValue(5);
+    long value = balance.getValue();
     currentWeight = (value - tareValue);
     // printf("Potentiometer Value: %.f", currentWeight);
 }

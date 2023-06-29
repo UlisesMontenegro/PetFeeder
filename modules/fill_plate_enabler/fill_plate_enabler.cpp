@@ -28,7 +28,7 @@ float dutyCycle;
 
 void fillPlateEnablerInit()
 {
-    dutyCycle = 0.027;
+    dutyCycle = 0.091;
     servomotor.write(dutyCycle);
     servomotor.period_ms(20);
 }
@@ -39,12 +39,12 @@ void fillPlateEnablerUpdate()
 }
 
 void enablePlateFilling(){
-    dutyCycle = 0.09;
+    dutyCycle = 0.078;
     servomotor.write(dutyCycle);
 }
 
 void disablePlateFilling(){
-    dutyCycle = 0.027;
+    dutyCycle = 0.091;
     servomotor.write(dutyCycle);
 }
 
