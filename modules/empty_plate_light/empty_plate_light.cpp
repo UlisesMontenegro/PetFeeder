@@ -29,7 +29,6 @@ void emptyPlateLightInit()
 
 void emptyPlateLightUpdate()
 {
-    //emptyPlateLight = !emptyPlateLight;
 }
 
 void emptyPlateLightTurn(int state)

@@ -38,7 +38,6 @@ void bleComUpdate()
             break;
             case 'F':
                 updateFoodPortion();
-                //configurationMode();
             break;
             case 'B':
                 pressButton();

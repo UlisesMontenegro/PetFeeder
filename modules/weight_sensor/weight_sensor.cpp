@@ -36,7 +36,6 @@ void weightSensorUpdate()
 {
     long value = balance.getValue();
     currentWeight = (value - tareValue);
-    // printf("Potentiometer Value: %.f", currentWeight);
 }
 
 long sensedWeight(){

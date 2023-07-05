@@ -8,6 +8,7 @@
 #define UPDATE_TIME_INCREMENT_MS  10
 #define DEFAULT_EMPTY_PLATE_WEIGHT  34590 // 
 #define DEFAULT_FULL_PLATE_WEIGHT  130320 // (Food + plate).
+#define FOOD_FALLING_DELAY_WEIGHT_CORRECTION 50000
 
 //=====[Declaration of public data types]======================================
 

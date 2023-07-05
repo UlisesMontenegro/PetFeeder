@@ -3,8 +3,6 @@
 #include "mbed.h"
 #include "arm_book_lib.h"
 #include "fill_plate_button.h"
-#include "empty_plate_light.h"
-#include "pet_feeder.h"
 
 //=====[Declaration of private defines]========================================
 
