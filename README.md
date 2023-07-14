@@ -12,7 +12,7 @@ For the development of this work, a NUCLEO-F429ZI board was used. It was program
     <img src="Images/Banner.png" alt="Banner PetFeeder" height="350"/>
 </p>
 
-CHAMUYO
+Faculty Info
 
 **Video summary (English):** [Youtube]()
 
