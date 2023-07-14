@@ -27,7 +27,7 @@ Faculty Info
 # Block Diagram
 
 <p align=center>
-    <img src="Images/BlockDiagram.png" alt="BlockDiagram" height="350"/>
+    <img src="Images/BlockDiagram.jpg" alt="BlockDiagram" height="350"/>
 </p>
 
 # File System
