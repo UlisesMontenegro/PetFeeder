@@ -14,7 +14,7 @@ For the development of this work, a NUCLEO-F429ZI board was used. It was program
 
 This work was carried out as part of the Embedded Systems course in the Faculty of Engineering of the University of Buenos Aires. The design, implementation, testing and documentation took me 4 weeks working on it part time.
 
-**Video summary (English):** [Youtube]()
+**Video summary (English):** [Youtube](https://youtu.be/gjbgVhxkutw)
 
 **Video Demo (Spanish):** [Youtube](https://www.youtube.com/watch?v=UbiIuWud2UA)
 
