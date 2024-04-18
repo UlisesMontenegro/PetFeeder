@@ -24,7 +24,7 @@ This work was carried out as part of the Embedded Systems course in the Faculty 
 
 The main functionality of the PetFeeder is to fill a plate with food for a pet remotely. This gives comfort to the user by reducing the amount of times he/she needs to fill the plate. It can also be useful for controlling the amount of food that the pet eats.
 
-The system has the capability to store several portions of food in a 5 L container. When the plate is empty, a LED is turned on and the user is notified in him/her smartphone via BLE (Bluetooth Low Energy). The plate weight and the food portion are parameteres configurables by the user through the smartphone. Using a scale, the system senses the weight of the plate and, comparing with the parameteres mentioned, knows when the plate is empty and when it is full.
+The system has the capability to store several portions of food in a 5 L container. When the plate is empty, a LED is turned on and the user is notified in him/her smartphone via BLE (Bluetooth Low Energy). The plate weight and the food portion are parameteres configurables by the user through the smartphone. Using a scale, the system senses the weight of the plate and, comparing with the parameters mentioned, knows when the plate is empty and when it is full.
 
 PetFeeder stands out from other similar products because the other are focused in filling the plate automatically following a schedule, while PetFeeder notifies the user when the plate is empty and is the user who allows the plate filling.
 
